@@ -2,12 +2,12 @@ const express =  require('express');
 const cors =  require('cors');
 const mongoose =  require('mongoose')
 const User = require('./model/user');
-
+require('dotenv').config(); 
 const app = express()
 app.use(cors())
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://rohanambig585:MVhXWuJenuDl5JBc@cluster0.9asme.mongodb.net/').then(()=>{
+mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log('Database connected successfully...')
 }).catch(()=>{
     console.log("Error in database connection")
