@@ -5,14 +5,12 @@ const User = require('./model/user');
 require('dotenv').config(); 
 const app = express()
 
-const corsOptions = {
-    origin: '*', // Allows requests from any origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
-    credentials: true,  // Allows credentials (cookies, authorization headers, etc.)
-  };
-  
-  // Apply CORS middleware globally
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'], // Add custom headers if needed
+    credentials: true,
+}));
   
   
 app.use(express.json());
