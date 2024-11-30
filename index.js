@@ -4,7 +4,17 @@ const mongoose =  require('mongoose')
 const User = require('./model/user');
 require('dotenv').config(); 
 const app = express()
-app.use(cors())
+
+const corsOptions = {
+    origin: '*', // Allows requests from any origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific methods
+    credentials: true,  // Allows credentials (cookies, authorization headers, etc.)
+  };
+  
+  // Apply CORS middleware globally
+app.use(cors(corsOptions));
+  
+  
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI).then(()=>{
